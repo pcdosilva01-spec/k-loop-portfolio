@@ -1,0 +1,1 @@
+export const technologies = ["Nuvemshop", "HTML", "CSS", "JavaScript", "TypeScript", "Figma", "Git", "Vercel"]

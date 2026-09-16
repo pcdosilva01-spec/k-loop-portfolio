@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#120A20" />
+    <title>K/LOOP — Do conceito ao clique</title>
+    <meta name="description" content="K/LOOP — web design, desenvolvimento de sites, lojas Nuvemshop e experiências digitais." />
+    <link rel="icon" type="image/png" sizes="256x256" href="favicon.png" />
+    <link rel="apple-touch-icon" href="favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header" id="top">
+      <div class="container nav-wrap">
+        <a class="brand" href="#top" aria-label="K/LOOP — início">
+          <img src="perfil_04_k_loop.jpg" alt="Logo K/LOOP" />
+          <span>K/LOOP</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Abrir menu de navegação">Menu</button>
+        <nav class="main-nav" id="main-nav" aria-label="Navegação principal">
+          <a href="#projetos">Projetos</a>
+          <a href="#servicos">Serviços</a>
+          <a href="#processo">Processo</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#contato">Contato</a>
+          <a class="nav-action" href="#contato">Solicitar orçamento <span aria-hidden="true">↗</span></a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero container" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="hero-kicker">K/LOOP <span>—</span> design + código + comércio digital</p>
+          <h1 id="hero-title">Do conceito<br /><em>ao clique.</em></h1>
+          <p class="hero-lede">Web design, desenvolvimento e experiências digitais para transformar ideias em projetos reais.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projetos">Ver projetos <span aria-hidden="true">↘</span></a>
+            <a class="button button-link" href="#contato">Vamos conversar <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <canvas class="hero-canvas" id="heroCanvas"></canvas>
+          <div class="hero-art__ring hero-art__ring--one"></div>
+          <div class="hero-art__ring hero-art__ring--two"></div>
+          <div class="hero-art__core"><img src="perfil_04_k_loop.jpg" alt="" /></div>
+          <p class="hero-art__note">web<br />interfaces<br />&amp; loops</p>
+          <span class="hero-art__line"></span>
+        </div>
+        <div class="hero-tags" aria-label="Áreas de atuação">
+          <span>Web Design</span><span>Sites</span><span>Nuvemshop</span><span>Landing Pages</span><span>E-commerce</span><span>Projetos pessoais</span><span>Criação de sites</span>
+        </div>
+      </section>
+
+      <section class="projects section container" id="projetos" aria-labelledby="projects-title">
+        <div class="section-heading section-heading--split">
+          <div><p class="section-index">01 / trabalho</p><h2 id="projects-title">Projetos que saíram<br /><em>do conceito.</em></h2></div>
+          <p>Uma seleção de sites, lojas e experiências digitais desenvolvidas pela K/LOOP.</p>
+        </div>
+        <div id="projectShowcase" class="project-showcase"></div>
+      </section>
+
+      <section class="services section" id="servicos" aria-labelledby="services-title">
+        <div class="container services-intro"><p class="section-index">02 / o que eu crio</p><h2 id="services-title">Design que<br /><em>faz acontecer.</em></h2><p>Da primeira ideia ao produto publicado, cada projeto encontra o nível certo de estratégia, interface e código.</p></div>
+        <div class="container services-list" id="servicesList"></div>
+      </section>
+
+      <section class="creative-lab section container" id="projetos-pessoais" aria-labelledby="lab-title">
+        <div class="section-heading section-heading--split"><div><p class="section-index">02.5 / laboratório pessoal</p><h2 id="lab-title">Ideias para<br /><em>ver, testar e clicar.</em></h2></div><p>Projetos autorais, imagens, designs e banners também fazem parte do meu processo. Abra uma categoria para explorar as possibilidades.</p></div>
+        <div class="creative-grid" id="creativeGrid"></div>
+      </section>
+
+      <section class="process section container" id="processo" aria-labelledby="process-title">
+        <div class="section-heading section-heading--split"><div><p class="section-index">03 / como acontece</p><h2 id="process-title">Do conceito<br /><em>ao clique.</em></h2></div><p>Um processo contínuo, com espaço para pensar, testar e fazer a ideia encontrar sua forma.</p></div>
+        <div class="loop-track" aria-label="Etapas do processo"><div class="loop-track__curve"></div><ol><li><span>01</span><strong>Descoberta</strong><small>entender o ponto de partida</small></li><li><span>02</span><strong>Estratégia</strong><small>definir direção e prioridade</small></li><li><span>03</span><strong>Design</strong><small>dar forma, ritmo e intenção</small></li><li><span>04</span><strong>Desenvolvimento</strong><small>transformar layout em produto</small></li><li><span>05</span><strong>Entrega</strong><small>publicar e deixar tudo pronto</small></li></ol></div>
+      </section>
+
+      <section class="about section container" id="sobre" aria-labelledby="about-title">
+        <div class="about-mark"><img src="perfil_04_k_loop.jpg" alt="Logo K/LOOP" /><span>uma pessoa<br />por trás do loop</span></div>
+        <div class="about-copy"><p class="section-index">04 / sobre</p><h2 id="about-title">Quem está por trás<br />da <em>K/LOOP?</em></h2><p>Sou web designer e desenvolvedor de sites. Crio sites, lojas Nuvemshop, landing pages e projetos digitais combinando design, funcionalidade e tecnologia.</p><p class="about-note">Este espaço foi desenhado para receber uma apresentação pessoal mais completa quando você quiser.</p><a class="button button-outline" href="#contato">Falar comigo <span aria-hidden="true">↗</span></a></div>
+      </section>
+
+      <section class="contact section container" id="contato" aria-labelledby="contact-title">
+        <div class="contact-stamp">K/LOOP<br /><span>2026</span></div>
+        <div class="contact-copy"><p class="section-index">05 / contato</p><h2 id="contact-title">Tem uma<br /><em>ideia?</em></h2><p>Vamos transformar ela em algo que as pessoas possam ver, usar e lembrar.</p></div>
+        <div class="contact-links" id="contactLinks" aria-label="Canais de contato"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><div class="container footer-wrap"><a class="brand" href="#top" aria-label="K/LOOP — início"><img src="perfil_04_k_loop.jpg" alt="Logo K/LOOP" /><span>K/LOOP</span></a><p>Do conceito ao clique.</p><span>© 2026 K/LOOP</span></div></footer>
+    <a class="whatsapp-fab" id="whatsappFab" href="#" aria-label="WhatsApp — configure o número no arquivo site-config.js" data-tooltip="WhatsApp"><img src="whatsapp.svg" alt="" /></a>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.min.js"></script>
+    <script src="site-config.js"></script>
+    <script src="motion.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
