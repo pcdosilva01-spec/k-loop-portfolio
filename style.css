@@ -124,3 +124,40 @@ body.is-traveling .site-header{background:rgba(18,10,32,.72)}
 @media(max-width:800px){.creative-card__body p{transform:none!important}.creative-card.is-open .creative-trigger{padding-top:1.1rem!important;padding-bottom:.9rem!important}}
 
 .creative-card__body p,.creative-items span,.creative-card__action{animation:none!important}
+
+
+/* Final responsive audit fixes: no horizontal spill at 320–375px. */
+html,body{max-width:100%;overflow-x:hidden}
+.hero h1{max-width:none;overflow-wrap:normal;word-break:normal}
+.loop-track,.loop-track ol{width:100%;max-width:100%;min-width:0}
+.loop-track li{min-width:0;max-width:100%;overflow-wrap:anywhere}
+@media(max-width:800px){
+  .hero h1{font-size:clamp(4.7rem,15.2vw,6.2rem);letter-spacing:-.055em;line-height:.92}
+  .hero-art__ring--one{width:22rem;height:13rem;right:1rem}
+  .hero-art__ring--two{width:20rem;height:23rem;right:1.8rem}
+  .hero-art__note{right:1rem}
+  .loop-track ol{grid-template-columns:repeat(2,minmax(0,1fr));gap:3rem .8rem}
+  .loop-track li,.loop-track li:nth-child(even){padding:0;min-width:0}
+  .loop-track li:last-child{grid-column:1/-1}
+  .loop-track strong,.loop-track small{overflow-wrap:anywhere}
+  .creative-panel{max-width:100%;height:0;overflow:hidden}
+  .creative-card:not(.is-open) .creative-panel{display:block!important;height:0!important;visibility:hidden}
+  .creative-card.is-open .creative-panel{visibility:visible}
+}
+@media(max-width:360px){
+  .hero h1{font-size:clamp(4.35rem,14.8vw,5.4rem)}
+  .loop-track ol{gap:2.4rem .7rem}
+}
+
+
+/* Typography fit pass: keep display words inside the actual mobile column. */
+@media(max-width:800px){
+  .hero h1{font-size:clamp(3.8rem,11.8vw,5.2rem);max-width:100%;white-space:normal}
+  .section-heading h2,.services-intro h2,.about h2,.contact h2{font-size:clamp(3.2rem,11.5vw,5rem);max-width:100%;overflow-wrap:break-word}
+  .services-intro h2 em{white-space:normal}
+}
+@media(max-width:360px){.hero h1{font-size:clamp(3.55rem,11.4vw,4.4rem)}}
+
+@media(max-width:800px){.hero-art__ring--two{width:17rem;height:20rem;right:3rem;top:6%}}
+
+@media(max-width:800px){.hero-art{min-height:23rem;margin-top:3rem}}
