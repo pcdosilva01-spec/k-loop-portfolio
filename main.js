@@ -2,24 +2,27 @@ const projects = [
   {
     title: "Tayna Xavier Boutique",
     category: "E-commerce / Nuvemshop",
-    description: "Experiência de loja virtual para uma boutique de moda feminina.",
+    description: "Desenvolvimento completo de uma loja virtual para uma boutique de moda feminina, da identidade visual à configuração do e-commerce.",
     url: "https://txmodafeminina.lojavirtualnuvem.com.br/",
-    technologies: ["Nuvemshop"],
+    technologies: ["Nuvemshop", "SEO", "E-commerce"],
     featured: true,
     image: "public/projects/tayna-xavier/desktop.webp",
     imageLabel: "Screenshot do projeto Tayna Xavier Boutique",
+    context: "Uma boutique precisava transformar seus produtos e sua presença digital em uma loja virtual organizada, clara e pronta para vender.",
+    role: "Desenvolvimento completo da loja, direção visual e configuração do e-commerce.",
+    scope: ["Tema e identidade visual", "Cadastro e configuração de produtos", "Títulos, descrições e tags para SEO", "Pagamentos e estrutura da loja"],
   },
 ];
 
 const services = [
-  ["01", "Lojas Nuvemshop", "Lojas virtuais com direção visual própria e uma experiência de compra clara."],
-  ["02", "Landing Pages", "Páginas que organizam uma ideia e conduzem o visitante até a próxima ação."],
-  ["03", "Sites Institucionais", "Presença digital com conteúdo, ritmo e personalidade para a marca."],
-  ["04", "Web Design", "Interfaces que equilibram intenção, beleza e facilidade de uso."],
-  ["05", "Design de Interfaces", "Sistemas visuais que dão consistência a produtos e experiências digitais."],
-  ["06", "Desenvolvimento Web", "Código limpo para transformar uma direção visual em uma experiência real."],
-  ["07", "Identidade Visual Digital", "Paleta, tipografia e elementos que fazem a marca continuar na tela."],
-  ["08", "Projetos Personalizados", "Uma combinação sob medida de estratégia, design e desenvolvimento."],
+  ["01", "Lojas Nuvemshop", "Criação e configuração de lojas virtuais com identidade própria, produtos organizados e estrutura pronta para vender."],
+  ["02", "Landing Pages", "Páginas objetivas para apresentar uma ideia, serviço, produto ou campanha e conduzir até a próxima ação."],
+  ["03", "Sites Institucionais", "Sites para marcas, profissionais e negócios que precisam explicar quem são e mostrar seu trabalho com clareza."],
+  ["04", "Web Design", "Direção visual, layout e experiência para transformar uma ideia em uma interface bonita e fácil de usar."],
+  ["05", "E-mail profissional", "Configuração e orientação para a comunicação digital da sua marca parecer mais organizada e confiável."],
+  ["06", "Desenvolvimento Web", "Construção de páginas e experiências digitais que tiram o layout do papel e colocam o projeto no ar."],
+  ["07", "Identidade Visual", "Cores, tipografia e elementos visuais para sua marca ter personalidade e consistência na tela."],
+  ["08", "Projetos Personalizados", "Uma solução sob medida para qualquer ideia que precise de estratégia, design, conteúdo ou desenvolvimento."],
 ];
 
 const creativeCategories = [
@@ -60,6 +63,8 @@ function renderProjects() {
         <div class="case-meta"><span>case principal</span><span>${project.category}</span></div>
         <h3>${project.title}</h3>
         <p>${project.description}</p>
+        <div class="case-story"><div><strong>Contexto</strong><span>${project.context}</span></div><div><strong>Meu papel</strong><span>${project.role}</span></div></div>
+        <div class="case-scope"><strong>O que foi feito</strong><ul>${project.scope.map((item) => `<li>${item}</li>`).join("")}</ul></div>
         <div class="tech-list">${project.technologies.map((tech) => `<span>${tech}</span>`).join("")}</div>
         <a class="button button-outline" href="${project.url}" target="_blank" rel="noopener noreferrer">Visitar projeto <span aria-hidden="true">↗</span></a>
       </div>
@@ -156,11 +161,7 @@ function renderContact() {
   if (!target) return;
   const config = window.KLoopConfig || {};
   const whatsapp = config.WHATSAPP_NUMBER ? `https://wa.me/${config.WHATSAPP_NUMBER.replace(/\D/g, "")}` : "";
-  target.innerHTML = [
-    configuredContact("WhatsApp", "whatsapp.svg", whatsapp, "configure o número"),
-    configuredContact("Instagram", "instagram.svg", config.INSTAGRAM_URL, "configure o perfil"),
-    configuredContact("Enviar e-mail", "gmail.svg", config.EMAIL ? `mailto:${config.EMAIL}` : "", "configure o e-mail"),
-  ].join("");
+  target.innerHTML = configuredContact("WhatsApp", "whatsapp.svg", whatsapp, "configure o número");
   const fab = document.querySelector("#whatsappFab");
   if (fab && whatsapp) { fab.href = whatsapp; fab.target = "_blank"; fab.rel = "noopener noreferrer"; fab.removeAttribute("aria-label"); fab.setAttribute("aria-label", "Falar pelo WhatsApp"); fab.title = "Falar pelo WhatsApp"; }
   if (fab && !whatsapp) fab.classList.add("whatsapp-fab--disabled");
