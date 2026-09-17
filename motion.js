@@ -29,6 +29,7 @@
       const start = window.scrollY;
       const destination = Math.max(0, target.getBoundingClientRect().top + window.scrollY - 84);
       const distance = Math.abs(destination - start);
+      const isContact = target.id === 'contato';
       if (reduced) { window.scrollTo(0, destination); return; }
       if (!gsap) { smoothFallback(destination, target); return; }
       if (scrollTween) scrollTween.kill();
@@ -46,6 +47,11 @@
         onUpdate: () => window.scrollTo(0, proxy.value),
         onComplete: () => {
           history.replaceState(null, '', `#${target.id}`);
+          if (isContact) {
+            gsap.fromTo(target.querySelectorAll('.contact-copy > *, .contact-links > *, .contact-stamp'),
+              { autoAlpha: 0, y: 18 },
+              { autoAlpha: 1, y: 0, duration: .55, stagger: .07, ease: 'power3.out', overwrite: 'auto' });
+          }
           gsap.to(wind, { autoAlpha: 0, duration: .22, ease: 'power2.out', onComplete: () => document.body.classList.remove('is-traveling') });
         },
       });
