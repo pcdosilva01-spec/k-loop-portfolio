@@ -165,3 +165,5 @@ html,body{max-width:100%;overflow-x:hidden}
 .case-story div{display:grid;grid-template-columns:8rem 1fr;gap:1rem}.case-story strong,.case-scope>strong{font-size:1.05rem;letter-spacing:.12em;text-transform:uppercase;color:var(--orange)}.case-story span{color:var(--muted);font-size:1.3rem;line-height:1.5}
 .case-scope{margin:2rem 0}.case-scope ul{list-style:none;padding:0;margin:1rem 0 0;display:grid;gap:.7rem}.case-scope li{color:var(--muted);font-size:1.25rem;padding-left:1.5rem;position:relative}.case-scope li:before{content:"";width:.45rem;height:.45rem;background:var(--orange);border-radius:50%;position:absolute;left:0;top:.7rem}
 @media(max-width:800px){.case-story div{grid-template-columns:1fr;gap:.25rem}.case-story span{font-size:1.25rem}.case-scope li{font-size:1.2rem}}
+
+@media(max-width:800px){.hero-art{min-height:40rem}.hero-art__note{top:29rem;bottom:auto;right:1rem;transform:none;white-space:nowrap}}
