@@ -62,12 +62,11 @@
       travel(target);
     }, true);
     if (!gsap || reduced) return;
-    gsap.set('.hero-copy > *, .hero-art__core, .hero-art__ring, .hero-tags span', { autoAlpha: 0 });
+    gsap.set('.hero-copy > *, .hero-art__core, .hero-tags span', { autoAlpha: 0 });
     const intro = gsap.timeline({ defaults: { ease } });
     intro
       .fromTo('.hero-copy > *', { y: 26, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .72, stagger: .08 })
-      .fromTo('.hero-art__ring', { scale: .82, rotation: -12, autoAlpha: 0 }, { scale: 1, rotation: 0, autoAlpha: .62, duration: 1.1, stagger: .12 }, '-=.52')
-      .fromTo('.hero-art__core', { scale: .78, rotation: -18, autoAlpha: 0 }, { scale: 1, rotation: -7, autoAlpha: 1, duration: .9, ease: 'back.out(1.15)' }, '-=.72')
+      .fromTo('.hero-art__core', { scale: .78, rotation: -7, autoAlpha: 0 }, { scale: 1, rotation: -7, autoAlpha: 1, duration: .9, ease: 'back.out(1.15)' }, '-=.72')
       .fromTo('.hero-tags span', { y: 12, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .42, stagger: .035 }, '-=.42');
 
     const reveals = document.querySelectorAll('.section-heading, .case-feature, .service-row, .creative-card, .loop-track li, .about, .contact');
@@ -87,47 +86,5 @@
     });
   }
 
-  function initHeroThree() {
-    const canvas = document.querySelector('#heroCanvas');
-    const THREE = window.THREE;
-    if (!canvas || !THREE || reduced || window.innerWidth < 801) return;
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(28, 1, .1, 100);
-    camera.position.z = 8;
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, powerPreference: 'low-power' });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-    const group = new THREE.Group();
-    scene.add(group);
-
-    const material = new THREE.MeshBasicMaterial({ color: 0xff7a18, wireframe: true, transparent: true, opacity: .22 });
-    const violet = new THREE.MeshBasicMaterial({ color: 0x5b2eff, wireframe: true, transparent: true, opacity: .28 });
-    const orb = new THREE.Mesh(new THREE.IcosahedronGeometry(1.35, 2), material);
-    const orbit = new THREE.Mesh(new THREE.TorusGeometry(1.85, .012, 8, 96), violet);
-    orbit.rotation.set(.8, .2, -.4);
-    group.add(orb, orbit);
-
-    let pointerX = 0; let pointerY = 0;
-    const onPointer = (event) => { pointerX = (event.clientX / window.innerWidth - .5) * .22; pointerY = (event.clientY / window.innerHeight - .5) * .16; };
-    window.addEventListener('pointermove', onPointer, { passive: true });
-    const resize = () => { const rect = canvas.getBoundingClientRect(); renderer.setSize(rect.width, rect.height, false); camera.aspect = rect.width / rect.height; camera.updateProjectionMatrix(); };
-    resize(); window.addEventListener('resize', resize, { passive: true });
-    const clock = new THREE.Clock(); let frame = 0; let active = true;
-    const observer = new IntersectionObserver(([entry]) => { active = entry.isIntersecting; });
-    observer.observe(canvas);
-    const render = () => {
-      if (active) {
-        const t = clock.getElapsedTime();
-        group.rotation.y += (pointerX - group.rotation.y) * .025;
-        group.rotation.x += (pointerY - group.rotation.x) * .025;
-        orb.rotation.x = t * .08; orb.rotation.z = t * .055;
-        orbit.rotation.z = t * .12; orbit.position.y = Math.sin(t * .7) * .08;
-        renderer.render(scene, camera);
-      }
-      frame = requestAnimationFrame(render);
-    };
-    render();
-    window.addEventListener('pagehide', () => { cancelAnimationFrame(frame); observer.disconnect(); renderer.dispose(); });
-  }
-
-  document.addEventListener('DOMContentLoaded', () => { initGsapMotion(); initHeroThree(); });
+  document.addEventListener('DOMContentLoaded', () => { initGsapMotion(); });
 })();
