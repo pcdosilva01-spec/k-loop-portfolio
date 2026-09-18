@@ -173,11 +173,12 @@ function initNavigation() {
   toggle?.addEventListener("click", () => {
     const open = toggle.getAttribute("aria-expanded") === "true";
     toggle.setAttribute("aria-expanded", String(!open));
+    toggle.setAttribute("aria-label", open ? "Abrir menu de navegação" : "Fechar menu de navegação");
     nav.classList.toggle("is-open", !open);
     toggle.textContent = open ? "Menu" : "Fechar";
   });
   nav?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => {
-    toggle?.setAttribute("aria-expanded", "false"); nav?.classList.remove("is-open"); if (toggle) toggle.textContent = "Menu";
+    toggle?.setAttribute("aria-expanded", "false"); toggle?.setAttribute("aria-label", "Abrir menu de navegação"); nav?.classList.remove("is-open"); if (toggle) toggle.textContent = "Menu";
   }));
 }
 
