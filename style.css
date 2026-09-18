@@ -167,3 +167,23 @@ html,body{max-width:100%;overflow-x:hidden}
 @media(max-width:800px){.case-story div{grid-template-columns:1fr;gap:.25rem}.case-story span{font-size:1.25rem}.case-scope li{font-size:1.2rem}}
 
 @media(max-width:800px){.hero-art{min-height:40rem}.hero-art__note{top:29rem;bottom:auto;right:1rem;transform:none;white-space:nowrap}}
+
+
+/* Portfolio polish pass: stronger logo presence and stable responsive composition. */
+.hero-art__core{width:34rem;height:34rem;right:8%;top:7%;}
+.hero-art__note{right:0;bottom:8%;font-size:1.25rem;line-height:1.35;}
+.hero-art__core img{image-rendering:auto;}
+.brand img{width:4.4rem;height:4.4rem;}
+@media(max-width:800px){
+  .hero-art{min-height:43rem;margin-top:3rem;}
+  .hero-art__core{width:24rem;height:24rem;right:50%;top:3rem;transform:translateX(50%) rotate(-7deg);}
+  .hero-art__float{inset:0;}
+  .hero-art__note{top:31rem;right:50%;bottom:auto;transform:translateX(50%);font-size:1.15rem;}
+  .brand img{width:4rem;height:4rem;}
+}
+@media(max-width:420px){
+  .hero-art{min-height:40rem;}
+  .hero-art__core{width:21rem;height:21rem;top:2rem;}
+  .hero-art__note{top:27rem;}
+}
+@media(prefers-reduced-motion:reduce){.hero-art__core,.hero-art__float,.hero-art__core img,.about-mark{animation:none!important;}}
