@@ -219,4 +219,4 @@ function initAdvancedMotion() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => { renderProjects(); renderServices(); renderCreativeLab(); renderContact(); initNavigation(); initReveal(); initAdvancedMotion(); });
+document.addEventListener("DOMContentLoaded", () => { renderProjects(); renderServices(); renderCreativeLab(); renderContact(); initNavigation(); });
