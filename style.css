@@ -219,3 +219,8 @@ body:before{opacity:.06;mix-blend-mode:normal}
 
 /* Responsive project screenshots */
 .project-card__visual picture,.project-card__visual picture img,.browser-mockup picture,.browser-mockup picture img,.case-visual picture,.case-visual picture img{display:block;width:100%;height:100%}.project-card__visual picture img,.case-visual picture img{object-fit:cover}.browser-mockup picture{height:auto}.browser-mockup picture img{height:auto;object-fit:contain}.project-card__visual picture img{transition:transform var(--motion-slow,var(--ease-premium)),filter var(--motion-medium,ease)}
+
+.home-secondary-project{border-top:1px solid var(--line)}
+.home-secondary-project .case-feature{align-items:center}
+.home-secondary-project .case-visual{min-height:42rem}
+@media(max-width:800px){.home-secondary-project .case-visual{min-height:28rem}}
