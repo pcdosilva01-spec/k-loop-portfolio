@@ -1,72 +1,18 @@
-const services = [
-  ['01', 'Lojas Nuvemshop', 'Lojas virtuais com direção visual própria e uma experiência de compra clara.'],
-  ['02', 'Landing Pages', 'Páginas que organizam uma ideia e conduzem o visitante até a próxima ação.'],
-  ['03', 'Sites Institucionais', 'Presença digital com conteúdo, ritmo e personalidade para a marca.'],
-  ['04', 'Web Design', 'Interfaces que equilibram intenção, beleza e facilidade de uso.'],
-  ['05', 'Design de Interfaces', 'Sistemas visuais que dão consistência a produtos e experiências digitais.'],
-  ['06', 'Desenvolvimento Web', 'Código limpo para transformar uma direção visual em uma experiência real.'],
-  ['07', 'Identidade Visual Digital', 'Paleta, tipografia e elementos que fazem a marca continuar na tela.'],
-  ['08', 'Projetos Personalizados', 'Uma combinação sob medida de estratégia, design e desenvolvimento.'],
+const projects = [
+  { slug: 'tayna-xavier', number: '01', title: 'Tayna Xavier Boutique', category: 'E-commerce / Nuvemshop', description: 'Experiência de loja virtual para uma boutique de moda feminina.', image: '/public/projects/tayna-xavier/desktop.webp', href: '/trabalhos/tayna-xavier/', external: 'https://txmodafeminina.lojavirtualnuvem.com.br/' },
+  { slug: '4em1-tx', number: '02', title: '4 em 1 — TX', category: 'Link-in-bio / experiência digital personalizada', description: 'Uma experiência de link na bio personalizada para centralizar os principais canais e destinos digitais da marca.', image: '/public/projects/4em1-tx/desktop.png', href: '/trabalhos/4em1-tx/', external: 'https://4em1datx.vercel.app' },
 ];
+const services = [['01','Lojas Nuvemshop','Lojas virtuais com direção visual própria e uma experiência de compra clara.'],['02','Landing Pages','Páginas que organizam uma ideia e conduzem o visitante até a próxima ação.'],['03','Sites Institucionais','Presença digital com conteúdo, ritmo e personalidade para a marca.'],['04','Web Design','Interfaces que equilibram intenção, beleza e facilidade de uso.'],['05','Design de Interfaces','Sistemas visuais que dão consistência a produtos e experiências digitais.'],['06','Desenvolvimento Web','Código limpo para transformar uma direção visual em uma experiência real.'],['07','Identidade Visual Digital','Paleta, tipografia e elementos que fazem a marca continuar na tela.'],['08','Projetos Personalizados','Uma combinação sob medida de estratégia, design e desenvolvimento.']];
 
-const navLinks = [
-  ['/trabalhos/', 'Trabalhos'], ['/servicos/', 'Serviços'], ['/processo/', 'Processo'],
-  ['/sobre/', 'Sobre'], ['/contato/', 'Contato'],
-];
-
-function renderServices() {
-  const target = document.querySelector('#servicesList');
-  if (!target) return;
-  target.innerHTML = services.map(([number, title, description]) => `<article class="service-row reveal"><span class="service-number">${number}</span><h3>${title}</h3><p>${description}</p><span class="service-arrow" aria-hidden="true">↗</span></article>`).join('');
+function browserFrame(project) { return `<div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>${project.external.replace('https://','')}</span></div>`; }
+function renderProjects() {
+  const target = document.querySelector('#projectsGrid'); if (!target) return;
+  target.innerHTML = projects.map((project) => `<article class="project-card reveal"><a class="project-card__visual case-visual case-visual--image" href="${project.href}"><img src="${project.image}" alt="Preview real de ${project.title}" loading="lazy">${browserFrame(project)}<span class="project-card__overlay">Explorar case <b>↗</b></span></a><div class="project-card__body"><div class="case-meta"><span>projeto ${project.number}</span><span>${project.category}</span></div><h2><a href="${project.href}">${project.title}</a></h2><p>${project.description}</p><a class="button button-link" href="${project.href}">Ver projeto <span>↗</span></a></div></article>`).join('');
 }
-
-function renderContact() {
-  const target = document.querySelector('#contactLinks');
-  if (!target) return;
-  const config = window.KLoopConfig || {};
-  const whatsapp = config.WHATSAPP_NUMBER ? `https://wa.me/${config.WHATSAPP_NUMBER.replace(/\D/g, '')}` : '';
-  const links = [];
-  if (whatsapp) links.push(`<a class="contact-link" href="${whatsapp}" target="_blank" rel="noopener noreferrer"><img class="contact-link__icon" src="/whatsapp.svg" alt="" /><span><strong>WhatsApp</strong><small>abrir canal ↗</small></span></a>`);
-  if (config.INSTAGRAM_URL) links.push(`<a class="contact-link" href="${config.INSTAGRAM_URL}" target="_blank" rel="noopener noreferrer"><img class="contact-link__icon" src="/instagram.svg" alt="" /><span><strong>Instagram</strong><small>abrir perfil ↗</small></span></a>`);
-  if (config.EMAIL) links.push(`<a class="contact-link" href="mailto:${config.EMAIL}"><img class="contact-link__icon" src="/gmail.svg" alt="" /><span><strong>E-mail</strong><small>${config.EMAIL}</small></span></a>`);
-  target.innerHTML = links.length ? links.join('') : '<p class="empty-channel">Os canais de contato serão configurados em breve. Enquanto isso, você pode voltar aos trabalhos e conhecer o que já está no ar.</p>';
-  const fab = document.querySelector('#whatsappFab');
-  if (fab && whatsapp) { fab.href = whatsapp; fab.target = '_blank'; fab.rel = 'noopener noreferrer'; fab.classList.remove('whatsapp-fab--disabled'); }
-}
-
-function closeMenu() {
-  const toggle = document.querySelector('.menu-toggle'); const nav = document.querySelector('.main-nav');
-  toggle?.setAttribute('aria-expanded', 'false'); toggle?.setAttribute('aria-label', 'Abrir menu de navegação');
-  nav?.classList.remove('is-open'); if (toggle) toggle.textContent = 'Menu'; document.body.classList.remove('menu-open');
-}
-
-function initNavigation() {
-  const toggle = document.querySelector('.menu-toggle'); const nav = document.querySelector('.main-nav');
-  toggle?.addEventListener('click', () => { const open = toggle.getAttribute('aria-expanded') === 'true'; toggle.setAttribute('aria-expanded', String(!open)); toggle.setAttribute('aria-label', open ? 'Abrir menu de navegação' : 'Fechar menu de navegação'); toggle.textContent = open ? 'Menu' : 'Fechar'; nav?.classList.toggle('is-open', !open); document.body.classList.toggle('menu-open', !open); });
-  nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
-  document.querySelector('.menu-backdrop')?.addEventListener('click', closeMenu);
-  document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeMenu(); });
-}
-
-function initTransitions() {
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!reduced) document.body.classList.add('page-enter');
-  document.querySelectorAll('a[href^="/"]:not([target])').forEach((link) => link.addEventListener('click', (event) => {
-    const url = new URL(link.href, location.href); if (url.origin !== location.origin || url.pathname === location.pathname) return;
-    if (reduced || !document.startViewTransition) return;
-    event.preventDefault(); document.body.classList.add('page-leave'); setTimeout(() => { location.href = url.href; }, 220);
-  }));
-}
-
-function initMotion() {
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const progress = document.createElement('div'); progress.className = 'scroll-progress'; progress.setAttribute('aria-hidden', 'true'); document.body.appendChild(progress);
-  const update = () => { const max = document.documentElement.scrollHeight - innerHeight; document.documentElement.style.setProperty('--scroll-progress', max > 0 ? `${scrollY / max * 100}%` : '0%'); };
-  update(); addEventListener('scroll', update, { passive: true });
-  const items = document.querySelectorAll('.reveal, .page-hero > *, .case-feature, .story-block, .process-step');
-  if (reduced || !('IntersectionObserver' in window)) { items.forEach((item) => item.classList.add('is-visible')); return; }
-  const observer = new IntersectionObserver((entries, current) => entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); current.unobserve(entry.target); } }), { threshold: .12, rootMargin: '0px 0px -6% 0px' });
-  items.forEach((item, index) => { item.style.setProperty('--reveal-delay', `${Math.min(index * 45, 240)}ms`); item.classList.add('reveal'); observer.observe(item); });
-}
-
-document.addEventListener('DOMContentLoaded', () => { renderServices(); renderContact(); initNavigation(); initTransitions(); initMotion(); });
+function renderServices() { const target = document.querySelector('#servicesList'); if (!target) return; target.innerHTML = services.map(([number,title,description]) => `<article class="service-row reveal"><span class="service-number">${number}</span><h3>${title}</h3><p>${description}</p><span class="service-arrow" aria-hidden="true">↗</span></article>`).join(''); }
+function renderContact() { const target = document.querySelector('#contactLinks'); if (!target) return; const config=window.KLoopConfig||{}; const whatsapp=config.WHATSAPP_NUMBER?`https://wa.me/${config.WHATSAPP_NUMBER.replace(/\D/g,'')}`:''; const links=[]; if(whatsapp)links.push(`<a class="contact-link" href="${whatsapp}" target="_blank" rel="noopener noreferrer"><img class="contact-link__icon" src="/whatsapp.svg" alt=""><span><strong>WhatsApp</strong><small>abrir canal ↗</small></span></a>`); if(config.INSTAGRAM_URL)links.push(`<a class="contact-link" href="${config.INSTAGRAM_URL}" target="_blank" rel="noopener noreferrer"><img class="contact-link__icon" src="/instagram.svg" alt=""><span><strong>Instagram</strong><small>abrir perfil ↗</small></span></a>`); if(config.EMAIL)links.push(`<a class="contact-link" href="mailto:${config.EMAIL}"><img class="contact-link__icon" src="/gmail.svg" alt=""><span><strong>E-mail</strong><small>${config.EMAIL}</small></span></a>`); target.innerHTML=links.length?links.join(''):'<p class="empty-channel">Os canais de contato serão configurados em breve. Enquanto isso, você pode conhecer os projetos que já estão no ar.</p>'; const fab=document.querySelector('#whatsappFab'); if(fab&&whatsapp){fab.href=whatsapp;fab.target='_blank';fab.rel='noopener noreferrer';fab.classList.remove('whatsapp-fab--disabled');} }
+function closeMenu(){const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('.main-nav');toggle?.setAttribute('aria-expanded','false');toggle?.setAttribute('aria-label','Abrir menu de navegação');nav?.classList.remove('is-open');if(toggle)toggle.textContent='Menu';document.body.classList.remove('menu-open');}
+function initNavigation(){const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('.main-nav');toggle?.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!open));toggle.setAttribute('aria-label',open?'Abrir menu de navegação':'Fechar menu de navegação');toggle.textContent=open?'Menu':'Fechar';nav?.classList.toggle('is-open',!open);document.body.classList.toggle('menu-open',!open);});nav?.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu));document.querySelector('.menu-backdrop')?.addEventListener('click',closeMenu);document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});}
+function initPageWipe(){const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;const layer=document.createElement('div');layer.className='page-wipe';layer.setAttribute('aria-hidden','true');document.body.appendChild(layer);if(!reduced)requestAnimationFrame(()=>layer.classList.add('page-wipe--in'));document.querySelectorAll('a[href^="/"]:not([target])').forEach(link=>link.addEventListener('click',event=>{const url=new URL(link.href,location.href);if(url.origin!==location.origin||url.pathname===location.pathname||reduced)return;event.preventDefault();closeMenu();layer.classList.remove('page-wipe--in');layer.classList.add('page-wipe--out');setTimeout(()=>{location.href=url.href;},420);}));}
+function initMotion(){const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;const progress=document.createElement('div');progress.className='scroll-progress';progress.setAttribute('aria-hidden','true');document.body.appendChild(progress);const update=()=>{const max=document.documentElement.scrollHeight-innerHeight;document.documentElement.style.setProperty('--scroll-progress',max>0?`${scrollY/max*100}%`:'0%');};update();addEventListener('scroll',update,{passive:true});const items=document.querySelectorAll('.reveal,.page-hero > *, .case-feature, .story-block, .process-step, .project-card');if(reduced||!('IntersectionObserver'in window)){items.forEach(item=>item.classList.add('is-visible'));return;}const observer=new IntersectionObserver((entries,current)=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');current.unobserve(entry.target);}}),{threshold:.12,rootMargin:'0px 0px -6% 0px'});items.forEach((item,index)=>{item.style.setProperty('--reveal-delay',`${Math.min(index*55,280)}ms`);item.classList.add('reveal');observer.observe(item);});}
+document.addEventListener('DOMContentLoaded',()=>{renderProjects();renderServices();renderContact();initNavigation();initPageWipe();initMotion();});
